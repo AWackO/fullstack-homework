@@ -1,6 +1,6 @@
 # fullstack-homework
 Go with CHI + React Typescript home assignment made with create-react-app my-app --template typescript
-
+I have made a an upstream api in GO that fetches the data from provided url and prepares the data that we need. With that the GO server provides endpoints to react application with the place data and the ids for those places. In the react app we can choose a place we want to check out via the dropdown menu and the card with info of the place will appear.
 # Backend instructions
 For the backend you should install GO (https://go.dev/doc/install)
 then change directory in your terminal to the backend folder and run the "go install" command to install packages and dependecies.
