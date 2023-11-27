@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import "./App.css";
 import PlaceDropdown from "./components/Dropdown";
 import PlaceCard from "./components/PlaceCard";
@@ -7,7 +7,7 @@ import usePlaceIDs from "./hooks/FetchPlaceIDs";
 
 const App = () => {
   const { placeIDs, loading, error } = usePlaceIDs();
-  const [selectedPlaceID, setSelectedPlaceID] = React.useState("");
+  const [selectedPlaceID, setSelectedPlaceID] = useState<string>("");
   const handlePlaceSelect = (placeID: string) => {
     setSelectedPlaceID(placeID);
   };

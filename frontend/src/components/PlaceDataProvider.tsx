@@ -8,7 +8,7 @@ interface PlaceDataProviderProps {
 
 const PlaceDataProvider: React.FC<PlaceDataProviderProps> = ({ placeID, children }) => {
   const { placeData, loading, error } = usePlaceInfo(placeID);
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
   useEffect(() => {
     if (placeID) {

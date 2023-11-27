@@ -7,7 +7,7 @@ interface PlaceDropdownProps {
 
 const PlaceDropdown: React.FC<PlaceDropdownProps> = ({ placeIDs, onSelect }) => {
   return (
-    <div className="dropdown-container">
+    <>
       <label htmlFor="placeDropdown" className="dropdown-label">
         Select place by id:
       </label>
@@ -25,7 +25,7 @@ const PlaceDropdown: React.FC<PlaceDropdownProps> = ({ placeIDs, onSelect }) => 
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 };
 

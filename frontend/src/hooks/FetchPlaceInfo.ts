@@ -21,7 +21,7 @@ export interface PlaceData {
 
 const usePlaceInfo = (placeID: string) => {
   const [placeData, setPlaceData] = useState<PlaceData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

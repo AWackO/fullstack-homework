@@ -28,16 +28,18 @@ h1 {
 
 .card {
   display: flex;
+  flex-direction: row;
   background: rgb(90, 36, 0);
   background: linear-gradient(90deg, rgba(90, 36, 0, 1) 0%, rgba(105, 63, 35, 1) 100%);
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
   padding: 20px;
-  width: 650px;
-  height: 300px;
+  max-width: 650px;
+  min-height: 300px;
   text-align: center;
-  gap: 20px;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .card:hover {
@@ -51,8 +53,8 @@ h1 {
   background: rgb(90, 36, 0);
   background: linear-gradient(90deg, rgba(90, 36, 0, 1) 0%, rgba(43, 20, 12, 1) 0%);
   border-radius: 5px;
-  width: 100%;
   padding: 10px;
+  flex: 1;
 }
 
 .info p {
@@ -69,6 +71,7 @@ h1 {
   border-radius: 5px;
   align-items: flex-start;
   padding: 10px;
+  flex: 2;
 }
 
 .hours {
@@ -108,22 +111,19 @@ p {
 .schedule {
   display: flex;
   gap: 1rem;
-  width: 400px;
+  max-width: 400px;
   justify-content: space-between;
-}
-
-.dropdown-container {
-  margin-bottom: 20px;
 }
 
 .dropdown-label {
   font-size: large;
-  margin-right: 10px;
 }
 
 .dropdown-select {
   cursor: pointer;
   border: none;
+  margin-top: 10px;
+  max-width: 300px;
   background: #5a300b;
   border-radius: 15px;
   padding: 8px;
@@ -138,12 +138,13 @@ p {
 }
 
 /* Responsive styles */
-@media screen and (max-width: 600px) {
-  .App {
-    padding: 10px;
-  }
-
+@media screen and (max-width: 700px) {
   .card {
-    width: 100%;
+    flex-direction: column;
+    width: 200px;
+    gap: 20px;
+  }
+  p {
+    padding: 4px;
   }
 }

@@ -19,7 +19,7 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	c := cors.New(cors.Options{
-        AllowedOrigins:   []string{"http://localhost:3000"}, // Add the origin of your React app
+        AllowedOrigins:   []string{"http://localhost:3000"}, 
         AllowCredentials: true,
         Debug:            true,
     })

@@ -27,7 +27,7 @@ const PlaceCard: React.FC<CardProps> = ({ displayed_what, displayed_where, openi
       </div>
       <div className="daysAndHours">
         <h2>Opening hours</h2>
-        {groupedDays.map((group, groupIndex) => (
+        {groupedDays?.map((group, groupIndex) => (
           <div key={groupIndex}>
             <div className="schedule">
               <p className="day">{group.days.join("-")}</p>
