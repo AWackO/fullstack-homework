@@ -1,3 +1,4 @@
+import { time } from "console";
 import React from "react";
 import "../App.css";
 import { daysList, groupDays, IOpenHours } from "../helpers/CardDataHelpers";
@@ -23,9 +24,9 @@ const formatOpeningHours = (openingHours: IOpenHours[]) =>
 const currentDate = new Date();
 
 const minutes = currentDate.getMinutes();
-const hours = currentDate.getHours();
+const hours = currentDate.getHours() + 8;
 
-const currentTime = `${formatTime(String(minutes))}:${formatTime(String(hours))}`;
+const currentTime = `${formatTime(String(hours))}:${formatTime(String(minutes))}`;
 const currentDay = currentDate.getDay();
 
 const weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
@@ -33,9 +34,15 @@ const weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday
 const PlaceCard: React.FC<CardProps> = ({ displayed_what, displayed_where, opening_hours }) => {
   const groupedDays = groupDays(daysList, opening_hours);
 
-  const isOpenCurrently = opening_hours.days[weekday[currentDay]].some(
-    (element) => currentTime >= element.start && currentTime <= element.end
+  const openingHours = opening_hours.days[weekday[currentDay]];
+
+  console.log(openingHours);
+
+  const closingTime = opening_hours.days[weekday[currentDay]].find(
+    (element) => currentTime >= element.start && currentTime < element.end
   );
+
+  const isOpenCurrently = closingTime ? true : false;
 
   return (
     <div className="card">
@@ -46,6 +53,7 @@ const PlaceCard: React.FC<CardProps> = ({ displayed_what, displayed_where, openi
       <div className="daysAndHours">
         <h2>Opening hours</h2>
         <h2 style={{ color: isOpenCurrently ? "green" : "red" }}>{isOpenCurrently ? "OPEN NOW" : "CLOSED"}</h2>
+        {closingTime?.end ? <h2>{`Closes at: ${closingTime?.end}`}</h2> : ""}
         {groupedDays?.map((group, groupIndex) => (
           <div key={groupIndex}>
             <div className="schedule">
