@@ -14,11 +14,29 @@ interface CardProps {
   };
 }
 
+const formatTime = (time: string) => {
+  return time.length > 1 ? time : `0${time}`;
+};
+
 const formatOpeningHours = (openingHours: IOpenHours[]) =>
   openingHours.map(({ start, end }) => `${start} - ${end}`).join(", ");
+const currentDate = new Date();
+
+const minutes = currentDate.getMinutes();
+const hours = currentDate.getHours();
+
+const currentTime = `${formatTime(String(minutes))}:${formatTime(String(hours))}`;
+const currentDay = currentDate.getDay();
+
+const weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
 const PlaceCard: React.FC<CardProps> = ({ displayed_what, displayed_where, opening_hours }) => {
   const groupedDays = groupDays(daysList, opening_hours);
+
+  const isOpenCurrently = opening_hours.days[weekday[currentDay]].some(
+    (element) => currentTime >= element.start && currentTime <= element.end
+  );
+
   return (
     <div className="card">
       <div className="info">
@@ -27,6 +45,7 @@ const PlaceCard: React.FC<CardProps> = ({ displayed_what, displayed_where, openi
       </div>
       <div className="daysAndHours">
         <h2>Opening hours</h2>
+        <h2 style={{ color: isOpenCurrently ? "green" : "red" }}>{isOpenCurrently ? "OPEN NOW" : "CLOSED"}</h2>
         {groupedDays?.map((group, groupIndex) => (
           <div key={groupIndex}>
             <div className="schedule">
